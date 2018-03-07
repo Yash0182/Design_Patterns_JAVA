@@ -1,0 +1,46 @@
+interface Animal
+{
+    void sound();
+}
+
+class Dog implements Animal
+{
+    public void sound()
+    {
+        System.out.println("Bark");
+    }
+}
+class Cat implements Animal
+{
+   public  void sound()
+    {
+        System.out.println("Meow");
+    }
+}
+public class Factory
+{
+    public static void main(String args[])
+    {
+        FactoryReset Fr = new FactoryReset("Dog");
+        Animal a =Fr.getInstance();
+        a.sound();
+    }
+}
+class FactoryReset
+{
+    String str;
+    
+    FactoryReset(String str)
+    {
+        this.str=str;
+    }
+    public Animal getInstance()
+    {
+        if(str.equals("Dog"))
+        {
+            return new Dog();
+        }
+        else
+        return new Cat();
+    }
+}
