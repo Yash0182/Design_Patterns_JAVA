@@ -1,0 +1,77 @@
+interface Size
+{
+    public double cost();
+}
+
+class Tall implements Size
+{
+    public double cost()
+    {
+        return 2;
+    }
+}
+
+class Grande implements Size
+{
+    public double cost()
+    {
+        return 3;
+    }
+}
+
+
+abstract class Beverage
+{
+    Size s;
+    String description = "Unknown";
+    
+    public String getDescription()
+    {
+        return description;
+    }
+    public abstract double cost();
+    
+}
+
+class Coffee extends Beverage
+{
+    Coffee(Size s)
+    {
+        this.s = s;
+    }
+    public double cost()
+    {
+        return 3.0+s.cost();
+    }
+}
+
+abstract class Condiments extends Beverage
+{
+    public abstract double cost();
+}
+
+class Whip extends Condiments
+{
+    Beverage b;
+    Whip(Beverage b1)
+    {
+        this.b = b1;
+    }
+    public double cost()
+    {
+        return .77+b.cost();
+    }
+}
+
+public class Main
+{
+    public static void main(String args[])
+    {
+     Beverage drink = new Coffee(new Tall());
+     drink = new Whip(drink);
+     System.out.println(drink.cost());
+     Beverage drink2 = new Coffee(new Grande());
+     drink2 = new Whip(drink2);
+     System.out.println(drink2.cost());
+    }
+}
